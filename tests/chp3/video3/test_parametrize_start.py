@@ -24,16 +24,14 @@ def process_data(city_list_location):
 
     yield _specify_type
 
+@pytest.mark.parametrize("country,stat,expected", [
+    ('Andorra', 'Mean', 1641.42),
+    ('Andorra', 'Median', 1538.02),
+    ('Aregentina', 'Median', 125.0)
 
-def test_average_atitude_per_country(process_data):
+])
+def test_atitude_stat_per_country(process_data):
     data = process_data(file_name_or_type="clean_map.csv")
-    andorran_avg_res = data_aggregator.atitude_stat_per_country(data, 'Andorra', 'Mean')
+    andorran_avg_res = data_aggregator.atitude_stat_per_country(data, country, stat)
 
-    assert andorran_avg_res == {'Country': 'Andorra', 'Mean': 1641.42}
-
-
-def test_median_atitude_per_country(process_data):
-    data = process_data(file_name_or_type="clean_map.csv")
-    andorran_median_res = data_aggregator.atitude_stat_per_country(data, 'Andorra', 'Median')
-
-    assert andorran_median_res == {'Country': 'Andorra', 'Median': 1538.02}
+    assert andorran_avg_res == {'Country': country, stat: expected}
