@@ -1,5 +1,5 @@
 import pytest
-
+from scripts import data_processor
 # from scripts import data_processor
 
 
@@ -16,4 +16,6 @@ def test_csv_reader_malformed_data_contents(city_list_location_malformed):
     in the exceptions context manager:
     """
     # data_processor.csv_reader(city_list_location_malformed)
-    pass
+    with pytest.raises(ValueError) as exp:
+        data_processor.csv_reader(city_list_location_malformed)
+        assert str(exp.value) == "unsure"
