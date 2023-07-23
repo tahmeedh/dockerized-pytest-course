@@ -1,3 +1,4 @@
+import os
 import pytest
 from scripts import data_processor
 
