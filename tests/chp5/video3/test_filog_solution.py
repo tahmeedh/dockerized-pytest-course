@@ -2,7 +2,7 @@ from datetime import datetime
 import pytest
 from scripts.fitness_log import FitnessLog
 
-
+#test 
 @pytest.fixture(scope='function')
 def create_tracker():
     fitness_tracker = FitnessLog()
